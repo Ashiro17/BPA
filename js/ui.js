@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
 
-  // MODAL 
+  // MODAL
   const signupBtn = document.querySelector(".signup-btn");
   const modal = document.getElementById("signupModal");
   const closeBtn = document.querySelector(".modal-close");
@@ -59,6 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
     en: {
       navAbout: "About",
       navResources: "Resources",
+      navTerms: "Terms",
+      navTips: "Tips",
       navContact: "Contact",
       navSignUp: "Sign Up",
       heroTitle:
@@ -364,7 +366,7 @@ document.addEventListener("DOMContentLoaded", function () {
     applyTranslations(saved);
   }
 
-  // ApplyTranslations
+  // FULL applyTranslations
   function applyTranslations(lang) {
     const t = translations[lang] || translations.en;
 
@@ -441,7 +443,41 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // TERM DEFINITIONS MODAL 
+  const termModal = document.getElementById("termModal");
+  const termTitle = document.getElementById("termTitle");
+  const termDefinition = document.getElementById("termDefinition");
+
+  // Open term modal
+  function openTermModal(title, text) {
+    termTitle.textContent = title;
+    termDefinition.innerHTML = text.replace(/\n/g, "<br>");
+    termModal.removeAttribute("hidden");
+    termModal.classList.add("show");
+    termModal.querySelector(".modal").focus();
+    document.body.style.overflow = "hidden";
+  }
+
+  // Close term modal
+  function closeTermModal() {
+    termModal.classList.remove("show");
+    setTimeout(() => termModal.setAttribute("hidden", ""), 400);
+    document.body.style.overflow = "";
+  }
+
+  // Event listeners for term modal
+  termModal?.addEventListener("click", (e) => {
+    if (e.target === termModal) closeTermModal();
+  });
+  termModal
+    ?.querySelector(".modal-close")
+    ?.addEventListener("click", closeTermModal);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && termModal?.classList.contains("show")) {
+      closeTermModal();
+    }
+  });
+
+  // Update term buttons - Urgent Nick
   document.querySelectorAll(".term-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       const term = btn.dataset.term;
@@ -450,15 +486,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const text =
         translations[lang][term] ||
         translations.en[term] ||
-        "Definition coming soon.";
+        "Definition whenever.";
 
-      document.querySelector(".modal h3").textContent = title;
-      document.querySelector(".modal p:not(.privacy-note)").innerHTML =
-        text.replace(/\n/g, "<br>");
-      document.querySelector(".modal form").style.display = "none";
-      document.querySelector(".privacy-note").style.display = "none";
-
-      openModal();
+      openTermModal(title, text);
     });
   });
 
@@ -475,7 +505,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 400);
   };
 
-  // Contact form mail to (Contact.html only)
+  // Contact form mailto (Contact.html only)
   const contactForm = document.getElementById("contactForm");
   if (contactForm) {
     contactForm.addEventListener("submit", function (e) {
