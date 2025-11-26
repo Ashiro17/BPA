@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact — Wellness Wave</title>
+    <meta
+      name="description"
+      content="Get in touch with Wellness Wave. Share feedback, suggestions, or just say hello. We're here to listen."
+    />
+
     <link rel="preload" href="images/Wave1.jpg" as="image" importance="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,215 +17,144 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+
+    <style>
+      .error-message {
+        color: #ffb3b3;
+        font-size: 0.9rem;
+        margin-top: 6px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        display: block;
+      }
+      .error-message.show {
+        opacity: 1;
+      }
+      .form-group.error input,
+      .form-group.error textarea {
+        border: 2px solid #ff6b6b;
+        background-color: rgba(255, 107, 107, 0.08);
+      }
+    </style>
   </head>
+
   <body>
-    <!-- SAME NAV BAR AS HOMEPAGE -->
+    <!-- NAV BAR -->
     <nav>
       <a href="index.html" class="logo" aria-label="Wellness Wave Home">
-        <img
-          src="images/Wellness Wave Logo.png"
-          alt="Wellness Wave Logo"
-          class="logo-img"
-        />
+        <img src="images/Wellness Wave Logo.png" alt="" class="logo-img" />
         <span class="logo-text">Wellness Wave</span>
       </a>
       <div class="nav-links">
         <a class="nav-link" data-lang href="#">English</a>
         <a class="nav-link" href="index.html#about">About</a>
         <a class="nav-link" href="index.html#resources">Resources</a>
+        <a class="nav-link" href="index.html#terms">Terms</a>
+        <a class="nav-link" href="index.html#tips">Tips</a>
         <a class="nav-link" href="Contact.html">Contact</a>
       </div>
       <button class="signup-btn" aria-label="Open signup modal">Sign Up</button>
     </nav>
 
-    <main
-      style="
-        padding: 160px 20px 120px;
-        min-height: 80vh;
-        position: relative;
-        z-index: 2;
-      "
-    >
-      <div style="max-width: 800px; margin: 0 auto; text-align: center">
-        <h1 style="font-size: 3.8rem; color: #f5fdf1; margin-bottom: 1rem">
-          Contact & Feedback
-        </h1>
-        <p
-          style="
-            font-size: 1.4rem;
-            color: #a8e6cf;
-            opacity: 0.9;
-            margin-bottom: 40px;
-          "
-        >
-          We’d love to hear from you.
-        </p>
+    <!-- CONTACT PAGE -->
+    <main class="contact-page">
+      <div class="container">
+        <header class="contact-header">
+          <h1>Contact & Feedback</h1>
+          <p class="subtitle">We’d love to hear from you.</p>
+        </header>
 
-        <form
-          id="contactForm"
-          style="
-            background: rgba(50, 57, 98, 0.9);
-            padding: 50px 40px;
-            border-radius: 24px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-          "
-        >
-          <label
-            for="name"
-            style="
-              display: block;
-              text-align: left;
-              color: #a8e6cf;
-              margin-bottom: 8px;
-              font-weight: 600;
-            "
-            >Name</label
-          >
-          <input
-            id="name"
-            type="text"
-            placeholder="Your name"
-            required
-            style="
-              width: 100%;
-              padding: 16px 20px;
-              border-radius: 12px;
-              border: none;
-              margin-bottom: 20px;
-              font-size: 1.1rem;
-            "
-          />
+        <section class="contact-form-wrapper">
+          <form id="contactForm" class="contact-form" novalidate>
+            <div class="form-group">
+              <label for="name"
+                >Name
+                <span class="required" aria-label="required">*</span></label
+              >
+              <input id="name" type="text" placeholder="Your name" required />
+              <span class="error-message" id="nameError"
+                >Please enter your name</span
+              >
+            </div>
 
-          <label
-            for="email"
-            style="
-              display: block;
-              text-align: left;
-              color: #a8e6cf;
-              margin-bottom: 8px;
-              font-weight: 600;
-            "
-            >Email (optional)</label
-          >
-          <input
-            id="email"
-            type="email"
-            placeholder="you@example.com"
-            style="
-              width: 100%;
-              padding: 16px 20px;
-              border-radius: 12px;
-              border: none;
-              margin-bottom: 20px;
-              font-size: 1.1rem;
-            "
-          />
+            <div class="form-group">
+              <label for="email"
+                >Email <span class="optional">(optional)</span></label
+              >
+              <input id="email" type="email" placeholder="you@example.com" />
+              <span class="error-message" id="emailError"
+                >Please enter a valid email</span
+              >
+            </div>
 
-          <label
-            for="subject"
-            style="
-              display: block;
-              text-align: left;
-              color: #a8e6cf;
-              margin-bottom: 8px;
-              font-weight: 600;
-            "
-            >Subject</label
-          >
-          <input
-            id="subject"
-            type="text"
-            placeholder="What's this about?"
-            required
-            style="
-              width: 100%;
-              padding: 16px 20px;
-              border-radius: 12px;
-              border: none;
-              margin-bottom: 20px;
-              font-size: 1.1rem;
-            "
-          />
-
-          <label
-            for="message"
-            style="
-              display: block;
-              text-align: left;
-              color: #a8e6cf;
-              margin-bottom: 8px;
-              font-weight: 600;
-            "
-            >Message</label
-          >
-          <textarea
-            id="message"
-            rows="7"
-            placeholder="How can we help? We're listening."
-            required
-            style="
-              width: 100%;
-              padding: 16px 20px;
-              border-radius: 12px;
-              border: none;
-              margin-bottom: 24px;
-              font-size: 1.1rem;
-              font-family: inherit;
-            "
-          ></textarea>
-
-          <div style="text-align: left; margin-bottom: 24px">
-            <label style="color: #a8e6cf; font-size: 0.95rem">
+            <div class="form-group">
+              <label for="subject"
+                >Subject
+                <span class="required" aria-label="required">*</span></label
+              >
               <input
-                type="checkbox"
-                id="consent"
+                id="subject"
+                type="text"
+                placeholder="What’s this about?"
                 required
-                style="margin-right: 10px"
               />
-              <label>I consent to using my email client and local storage for demo purposes.</label>
-          </div>
+              <span class="error-message" id="subjectError"
+                >Please enter a subject</span
+              >
+            </div>
 
-          <button
-            type="submit"
-            style="
-              background: #a8e6cf;
-              color: #323962;
-              padding: 16px 40px;
-              border: none;
-              border-radius: 50px;
-              font-size: 1.2rem;
-              font-weight: 600;
-              cursor: pointer;
-              width: 100%;
-            "
-          >
-            Send Message
-          </button>
-        </form>
+            <div class="form-group">
+              <label for="message"
+                >Message
+                <span class="required" aria-label="required">*</span></label
+              >
+              <textarea
+                id="message"
+                rows="7"
+                placeholder="How can we help? We’re listening."
+                required
+              ></textarea>
+              <span class="error-message" id="messageError"
+                >Please write a message</span
+              >
+            </div>
 
-        <p style="margin-top: 50px">
-          <a
-            href="index.html"
-            style="
-              color: #a8e6cf;
-              font-size: 1.2rem;
-              text-decoration: underline;
-            "
-            >Back to Home</a
-          >
-        </p>
+            <div class="form-group consent-group">
+              <label class="checkbox-container">
+                <input type="checkbox" id="consent" required />
+                <span class="checkmark" aria-hidden="true"></span>
+                I consent to using my email client and local storage for demo
+                purposes.
+              </label>
+              <span class="error-message" id="consentError"
+                >You must consent to continue</span
+              >
+            </div>
+
+            <button type="submit" class="btn-submit">Send Message</button>
+          </form>
+
+          <p class="back-home"><a href="index.html">Back to Home</a></p>
+        </section>
       </div>
     </main>
 
     <!-- SIGN UP MODAL -->
     <div class="modal-overlay" id="signupModal" hidden>
-      <div class="modal" tabindex="-1">
-        <button class="modal-close">×</button>
-        <h1>Join the Wave</h1>
-        <p>Get updates, tips, and early access to new resources.</p>
+      <div
+        class="modal"
+        tabindex="-1"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="signupTitle"
+      >
+        <button class="modal-close" aria-label="Close signup modal">×</button>
+        <h3 id="signupTitle">Join the Wave</h3>
+        <p>Get gentle monthly tips and early access to new resources.</p>
         <form id="signupForm">
+          <label class="visually-hidden" for="signupEmail">Email address</label>
           <input
+            id="signupEmail"
             type="email"
             placeholder="Enter your email"
             required
@@ -235,5 +169,65 @@
     </div>
 
     <script src="js/ui.js" defer></script>
+
+    <script>
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          // Reset errors
+          document
+            .querySelectorAll(".form-group")
+            .forEach((g) => g.classList.remove("error"));
+          document
+            .querySelectorAll(".error-message")
+            .forEach((m) => m.classList.remove("show"));
+
+          let hasError = false;
+
+          if (!this.name.value.trim()) {
+            showError("name");
+            hasError = true;
+          }
+          if (this.email.value && !/^\S+@\S+\.\S+$/.test(this.email.value)) {
+            showError("email");
+            hasError = true;
+          }
+          if (!this.subject.value.trim()) {
+            showError("subject");
+            hasError = true;
+          }
+          if (!this.message.value.trim()) {
+            showError("message");
+            hasError = true;
+          }
+          if (!this.consent.checked) {
+            showError("consent");
+            hasError = true;
+          }
+
+          if (hasError) {
+            e.preventDefault();
+            return;
+          }
+
+          // instantly open email client
+          e.preventDefault();
+          const recipient = "hello@wellnesswave.example";
+          const subject = encodeURIComponent(this.subject.value);
+          const body = encodeURIComponent(
+            `From: ${this.name.value}\n` +
+              `Email: ${this.email.value || "Not provided"}\n\n` +
+              this.message.value
+          );
+
+          window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+        });
+
+      function showError(field) {
+        const group = document.querySelector(`#${field}Error`).parentElement;
+        group.classList.add("error");
+        document.getElementById(`${field}Error`).classList.add("show");
+      }
+    </script>
   </body>
 </html>
